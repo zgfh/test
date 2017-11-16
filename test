@@ -1,0 +1,89 @@
+status:
+  replicas: 1
+  observedGeneration: 3
+  updatedReplicas: 1
+  availableReplicas: 1
+  readyReplicas: 1
+  
+  conditions:
+    - status: 'True'
+      lastUpdateTime: '2017-11-01T09:21:00+00:00'
+      lastTransitionTime: '2017-11-01T09:21:00+00:00'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+      type: Available
+kind: Deployment
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      restartPolicy: Always
+      containers:
+        - terminationMessagePath: /dev/termination-log
+          name: a20482222-2048
+          image: 'daocloud.io/daocloud/dao-2048:latest'
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          ports:
+            - protocol: TCP
+              containerPort: 80
+          resources: {}
+    metadata:
+      labels:
+        app: a20482222-2048
+        io.daocloud.dce.app: a20482222
+      name: a20482222-2048
+  selector:
+    matchLabels:
+      io.daocloud.dce.app: a20482222
+apiVersion: extensions/v1beta1
+metadata:
+  uid: f9846e9b-bee5-11e7-af41-0242ac140006
+  generation: 3
+  labels:
+    io.daocloud.dce.template: '2048'
+    app: a20482222-2048
+    io.daocloud.dce.app: a20482222
+  namespace: default
+  resourceVersion: '943574'
+  creationTimestamp: '2017-11-01T09:21:00+00:00'
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/a20482222-2048
+  name: a20482222-2048
+
+---
+status:
+  loadBalancer: {}
+kind: Service
+spec:
+  clusterIP: 10.108.216.150
+  sessionAffinity: None
+  type: NodePort
+  ports:
+    - targetPort: '80'
+      protocol: TCP
+      port: 80
+      nodePort: 30564
+  selector:
+    app: a20482222-2048
+apiVersion: v1
+metadata:
+  uid: f98a2b5c-bee5-11e7-af41-0242ac140006
+  labels:
+    io.daocloud.dce.template: '2048'
+    io.daocloud.dce.app: a20482222
+  namespace: default
+  resourceVersion: '3349'
+  creationTimestamp: '2017-11-01T09:21:00+00:00'
+  selfLink: /api/v1/namespaces/default/services/a20482222-2048
+  name: a20482222-2048
