@@ -1,5 +1,5 @@
 #!/bin/bash
-#use: curl https://raw.githubusercontent.com/zgfh/test/master/play-with-k8s.com.sh|sh - ngrok_token 
+#use: curl https://raw.githubusercontent.com/zgfh/test/master/play-with-k8s.com.sh|sh -s -- ngrok_token 
 #I want a shell for test
 ngrok_token=$1
 rm -rf ngrok.zip ngrok
