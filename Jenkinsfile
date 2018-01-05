@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'build'
+        sh 'mkdir -p target/ && touch target/test.jar && echo "build"'
       }
     }
     stage('test') {
@@ -16,5 +16,11 @@ pipeline {
         sh 'echo "deploy"'
       }
     }
+    
   }
+  post {
+        always {
+            archive 'target/*.jar'
+        }
+   }
 }
