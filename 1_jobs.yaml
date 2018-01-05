@@ -12,5 +12,5 @@ spec:
       containers:
       - name: job1
         image: ubuntu:14.04
-        command: ["sh",  "echo 'beijing';sleep 5s"]
+        command: ["sh", "-c",  "echo 'beijing';sleep 5s"]
       restartPolicy: Never
