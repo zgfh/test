@@ -4,6 +4,7 @@ metadata:
   name: jobs1
 spec:
   completions: 45
+  parallelism: 2
   template:
     metadata:
       name: jobs1
