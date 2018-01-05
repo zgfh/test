@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pi
+  name: 1_job_test
 spec:
   template:
     spec:
