@@ -12,8 +12,5 @@ spec:
       containers:
       - name: job1
         image: ubuntu:14.04
-        command: ["echo",  "Beijing"]
-      - name: job2
-        image: ubuntu:14.04
-        command: ["echo",  "Beijing"]
+        command: ["sh",  "echo 'beijing';sleep 5s"]
       restartPolicy: Never
