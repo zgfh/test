@@ -18,7 +18,7 @@ spec:
     command:
     - sh
     - "-c"
-    - "until -f /work-dir/check.html; do echo waiting for file check.html exist; sleep 2; done;"
+    - "until test -f /work-dir/check.html; do echo waiting for file check.html exist; sleep 2; done;"
     volumeMounts:
     - name: workdir
       mountPath: "/work-dir"
